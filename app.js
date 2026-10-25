@@ -184,15 +184,19 @@ async function loadScoreData() {
     comparisonContent.hidden = false;
     updateComparison(matches);
 
-    function onTeamChange() {
+    let previousTeamOne = teamOneSelect.value;
+    let previousTeamTwo = teamTwoSelect.value;
+
+    function onTeamChange(event) {
       if (teamOneSelect.value === teamTwoSelect.value) {
-        const options = [...teamTwoSelect.options];
-        teamTwoSelect.value = options.find((option) => option.value !== teamOneSelect.value)?.value || '';
+        if (event.currentTarget === teamOneSelect) {
+          teamTwoSelect.value = previousTeamOne;
+        } else {
+          teamOneSelect.value = previousTeamTwo;
+        }
       }
-      const selectedOne = teamOneSelect.value;
-      const selectedTwo = teamTwoSelect.value;
-      [...teamOneSelect.options].forEach((option) => { option.disabled = option.value === selectedTwo; });
-      [...teamTwoSelect.options].forEach((option) => { option.disabled = option.value === selectedOne; });
+      previousTeamOne = teamOneSelect.value;
+      previousTeamTwo = teamTwoSelect.value;
       updateComparison(matches);
     }
 
