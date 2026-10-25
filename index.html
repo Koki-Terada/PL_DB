@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#071d18">
+  <meta name="theme-color" content="#00f08a">
   <meta name="description" content="プレミアリーグのデータを確認するためのWebアプリです。">
   <title>プレミアリーグデータ</title>
   <link rel="stylesheet" href="style.css">
@@ -11,19 +11,24 @@
 </head>
 <body>
   <header class="topbar">
-    <a class="brand" href="#main" aria-label="プレミアリーグデータ ホーム">
-      <span class="brand-mark" aria-hidden="true">PL</span>
-      <span>PREMIER LEAGUE <small>DATA CENTER</small></span>
-    </a>
-    <span class="season">2015/16 — 2025/26</span>
+    <div class="topbar-inner">
+      <a class="brand" href="#main" aria-label="プレミアリーグデータベース ホーム">
+        <span class="brand-mark" aria-hidden="true"><span>PL</span><span>DB</span></span>
+        <span class="brand-name">Premier League<small>Data Base</small></span>
+      </a>
+      <svg class="league-mark" viewBox="0 0 72 88" aria-hidden="true">
+        <path d="M15 7 22 15 29 3 35 14 44 4 46 17 56 12 52 23 61 27 54 34 60 43 51 46 57 57 49 58 51 69 43 68 39 80 33 72 26 81 24 69 15 73 18 62 9 59 15 51 6 45 15 40 10 32 20 30 17 22 28 24 22 17z" fill="currentColor"/>
+        <path d="M31 30c10-5 22 1 24 12l-5 6 4 8-9 1-5 9-8-5-9 3 2-10-6-7 7-5-2-8z" fill="#00f08a"/>
+        <circle cx="43" cy="38" r="2" fill="#421b59"/>
+      </svg>
+    </div>
   </header>
 
   <main id="main">
     <section class="hero" aria-labelledby="page-title">
-      <p class="eyebrow"><span></span> FOOTBALL, IN FOCUS</p>
-      <h1 id="page-title">プレミアリーグ<br><span>データセンター</span></h1>
-      <p class="intro">過去の対戦結果を、チームごとにチェック。</p>
-      <div class="hero-meta"><span class="live-dot"></span> 過去の試合データから集計</div>
+      <h1 id="page-title">プレミアリーグ<br><span>データベース</span></h1>
+      <p class="intro">過去の対戦成績をチームごとにチェック</p>
+      <div class="hero-meta"><span aria-hidden="true">•</span> 15/16〜25/26の試合データから集計</div>
     </section>
 
     <section class="comparison" aria-labelledby="comparison-title">
@@ -36,12 +41,26 @@
       </div>
 
       <div class="selectors">
-        <label for="team-one">選択チーム① <span>勝率を表示するチーム</span>
-          <select id="team-one" disabled><option>読み込み中...</option></select>
+        <label class="team-side team-side-home" for="team-one">
+          <span class="team-title">選択チーム①</span>
+          <span class="team-description">勝率を表示するチーム</span>
+          <span class="team-select-card">
+            <span class="team-code" id="team-one-code" aria-hidden="true">ARS</span>
+            <span class="team-selected-name" id="team-one-name" aria-hidden="true">Arsenal</span>
+            <span class="select-chevron" aria-hidden="true">⌄</span>
+            <select id="team-one" aria-label="選択チーム①を選択" disabled><option>読み込み中...</option></select>
+          </span>
         </label>
         <span class="versus" aria-hidden="true">VS</span>
-        <label for="team-two">選択チーム② <span>対戦相手</span>
-          <select id="team-two" disabled><option>読み込み中...</option></select>
+        <label class="team-side team-side-away" for="team-two">
+          <span class="team-title">選択チーム②</span>
+          <span class="team-description">対戦相手</span>
+          <span class="team-select-card">
+            <span class="team-code" id="team-two-code" aria-hidden="true">MCI</span>
+            <span class="team-selected-name" id="team-two-name" aria-hidden="true">Manchester City</span>
+            <span class="select-chevron" aria-hidden="true">⌄</span>
+            <select id="team-two" aria-label="選択チーム②を選択" disabled><option>読み込み中...</option></select>
+          </span>
         </label>
       </div>
 

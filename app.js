@@ -5,6 +5,29 @@ const comparisonContent = document.querySelector('#comparison-content');
 const matchList = document.querySelector('#match-list');
 const emptyState = document.querySelector('#empty-state');
 const matchesCount = document.querySelector('#match-count');
+const teamCodes = {
+  Arsenal: 'ARS', 'Aston Villa': 'AVL', Bournemouth: 'BOU', Brentford: 'BRE',
+  Brighton: 'BHA', Burnley: 'BUR', Cardiff: 'CAR', Chelsea: 'CHE',
+  'Crystal Palace': 'CRY', Everton: 'EVE', Fulham: 'FUL', Huddersfield: 'HUD',
+  Hull: 'HUL', Ipswich: 'IPS', Leeds: 'LEE', Leicester: 'LEI', Liverpool: 'LIV',
+  Luton: 'LUT', 'Manchester City': 'MCI', 'Manchester Utd': 'MUN',
+  Middlesbrough: 'MID', Newcastle: 'NEW', Norwich: 'NOR', Nottingham: 'NFO',
+  'Sheffield Utd': 'SHU', Southampton: 'SOU', Stoke: 'STO', Sunderland: 'SUN',
+  Swansea: 'SWA', Tottenham: 'TOT', Watford: 'WAT', 'West Brom': 'WBA',
+  'West Ham': 'WHU', Wolves: 'WOL',
+};
+const teamColors = {
+  Arsenal: '#ef0107', 'Aston Villa': '#670e36', Bournemouth: '#da291c',
+  Brentford: '#e30613', Brighton: '#0057b8', Burnley: '#6c1d45', Cardiff: '#0070b5',
+  Chelsea: '#034694', 'Crystal Palace': '#1b458f', Everton: '#003399', Fulham: '#303030',
+  Huddersfield: '#0e63ad', Hull: '#9d6710', Ipswich: '#0056a6', Leeds: '#685900',
+  Leicester: '#003090', Liverpool: '#c8102e', Luton: '#a95600',
+  'Manchester City': '#6cabdd', 'Manchester Utd': '#da291c', Middlesbrough: '#e11b22',
+  Newcastle: '#242424', Norwich: '#007a3d', Nottingham: '#b00000',
+  'Sheffield Utd': '#c91524', Southampton: '#c91524', Stoke: '#c91524',
+  Sunderland: '#bd101b', Swansea: '#252525', Tottenham: '#132257', Watford: '#7a1d39',
+  'West Brom': '#122f67', 'West Ham': '#7a263a', Wolves: '#644400',
+};
 
 function parseCsv(text) {
   const rows = [];
@@ -94,6 +117,19 @@ function formatDate(date) {
   }).format(date);
 }
 
+function updateTeamBadges() {
+  [
+    [teamOneSelect, 'team-one-code', 'team-one-name'],
+    [teamTwoSelect, 'team-two-code', 'team-two-name'],
+  ].forEach(([select, codeId, nameId]) => {
+    const team = select.value;
+    document.querySelector(`#${codeId}`).textContent = teamCodes[team]
+      || team.replace(/[^A-Za-z]/g, '').slice(0, 3).toUpperCase();
+    document.querySelector(`#${nameId}`).textContent = team;
+    select.closest('.team-select-card').style.setProperty('--team-color', teamColors[team] || '#4c7d91');
+  });
+}
+
 function addCell(row, text, className = '') {
   const cell = document.createElement('td');
   cell.textContent = text;
@@ -161,6 +197,7 @@ function populateTeamSelects(matches) {
 
   fillSelect(teamOneSelect, initialOne);
   fillSelect(teamTwoSelect, initialTwo);
+  updateTeamBadges();
 }
 
 async function loadScoreData() {
@@ -195,6 +232,7 @@ async function loadScoreData() {
       }
       previousTeamOne = teamOneSelect.value;
       previousTeamTwo = teamTwoSelect.value;
+      updateTeamBadges();
       updateComparison(matches);
     }
 
