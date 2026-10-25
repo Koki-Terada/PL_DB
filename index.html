@@ -15,29 +15,81 @@
       <span class="brand-mark" aria-hidden="true">PL</span>
       <span>PREMIER LEAGUE <small>DATA CENTER</small></span>
     </a>
-    <span class="season">シーズンデータ</span>
+    <span class="season">2015/16 — 2025/26</span>
   </header>
 
   <main id="main">
     <section class="hero" aria-labelledby="page-title">
       <p class="eyebrow"><span></span> FOOTBALL, IN FOCUS</p>
       <h1 id="page-title">プレミアリーグ<br><span>データセンター</span></h1>
-      <p class="intro">試合の熱狂を、データでもっと楽しもう。</p>
-      <div class="hero-meta"><span class="live-dot"></span> あなたの観戦を、もっと深く。</div>
+      <p class="intro">過去の対戦結果を、チームごとにチェック。</p>
+      <div class="hero-meta"><span class="live-dot"></span> 過去の試合データから集計</div>
+    </section>
+
+    <section class="comparison" aria-labelledby="comparison-title">
+      <div class="section-heading">
+        <div>
+          <p class="card-label">HEAD-TO-HEAD</p>
+          <h2 id="comparison-title">チーム別 対戦成績</h2>
+        </div>
+        <p id="data-status" class="data-status" role="status" aria-live="polite">試合データを読み込み中...</p>
+      </div>
+
+      <div class="selectors">
+        <label for="team-one">選択チーム① <span>勝率を表示するチーム</span>
+          <select id="team-one" disabled><option>読み込み中...</option></select>
+        </label>
+        <span class="versus" aria-hidden="true">VS</span>
+        <label for="team-two">選択チーム② <span>対戦相手</span>
+          <select id="team-two" disabled><option>読み込み中...</option></select>
+        </label>
+      </div>
+
+      <div id="comparison-content" hidden>
+        <div class="summary-grid" aria-label="対戦勝率">
+          <article class="stat-card stat-featured">
+            <p>総合勝率</p>
+            <strong id="overall-rate">—</strong>
+            <span id="overall-record">—</span>
+          </article>
+          <article class="stat-card">
+            <p>ホーム勝率</p>
+            <strong id="home-rate">—</strong>
+            <span id="home-record">—</span>
+          </article>
+          <article class="stat-card">
+            <p>アウェイ勝率</p>
+            <strong id="away-rate">—</strong>
+            <span id="away-record">—</span>
+          </article>
+        </div>
+
+        <div class="results-heading">
+          <div><h3>過去の対戦結果</h3><p id="match-count"></p></div>
+          <span>直近の試合から表示</span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th scope="col">日付</th><th scope="col">大会</th><th scope="col">ホーム</th><th scope="col" class="score-heading">スコア</th><th scope="col">アウェイ</th><th scope="col">結果</th></tr></thead>
+            <tbody id="match-list"></tbody>
+          </table>
+        </div>
+        <p id="empty-state" class="empty-state" hidden>この2チームの対戦データはありません。</p>
+      </div>
     </section>
 
     <section class="check-card" aria-labelledby="check-title">
-      <div class="card-icon" aria-hidden="true">01</div>
+      <div class="card-icon" aria-hidden="true">✓</div>
       <div class="card-copy">
-        <p class="card-label">GETTING STARTED</p>
-        <h2 id="check-title">準備はできましたか？</h2>
-        <p>ボタンを押して、アプリの動作を確認しましょう。</p>
+        <p class="card-label">APP CHECK</p>
+        <h2 id="check-title">アプリの動作確認</h2>
+        <p>ボタンを押して表示を確認できます。</p>
       </div>
       <button id="check-button" type="button">動作確認 <span aria-hidden="true">→</span></button>
       <p id="result" class="result" role="status" aria-live="polite"></p>
     </section>
 
-    <p class="coming-soon"><span aria-hidden="true">✦</span> 順位表や試合結果などのデータを、これから追加していきます。</p>
+    <p class="coming-soon">集計対象は <code>data/Score_DB.csv</code> です。</p>
   </main>
 
   <footer><span>PREMIER LEAGUE DATA CENTER</span><span>YOUR GAME. YOUR DATA.</span></footer>
