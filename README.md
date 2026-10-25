@@ -6,6 +6,8 @@
 
 アプリは `data/Score_DB.csv` を読み込み、2チーム間の過去の試合を新しい順に表示します。チーム①を基準に、総合・ホーム・アウェイの勝率と勝敗数を集計します。勝率は「勝利数 ÷ 試合数」です。引き分けは試合数に含みます。
 
+リーグロゴとクラブロゴは `data/logo/` 内のPNG・SVGファイルを表示します。
+
 `data/old` 内のファイルは読み込みません。更新履歴.xlsxは参照用ファイルとして保管し、アプリからは読み込まず、編集もしません。
 
 ## ローカルで確認する
@@ -23,7 +25,7 @@
 
 ## GitHub Pagesで公開する
 
-1. `index.html`、`style.css`、`app.js`、`README.md` と `data/Score_DB.csv` をリポジトリに含めます。
+1. `index.html`、`style.css`、`app.js`、`README.md`、`data/Score_DB.csv` と `data/logo/` 内のロゴ画像をリポジトリに含めます。
 2. GitHubのリポジトリで **Settings → Pages** を開きます。
 3. **Deploy from a branch** を選び、公開するブランチとフォルダー（通常は `main` と `/ (root)`）を指定して保存します。
 4. Pagesに表示されたURLを開いて確認します。

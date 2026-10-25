@@ -119,14 +119,18 @@ function formatDate(date) {
 
 function updateTeamBadges() {
   [
-    [teamOneSelect, 'team-one-code', 'team-one-name'],
-    [teamTwoSelect, 'team-two-code', 'team-two-name'],
-  ].forEach(([select, codeId, nameId]) => {
+    [teamOneSelect, 'team-one-code', 'team-one-name', 'team-one-logo'],
+    [teamTwoSelect, 'team-two-code', 'team-two-name', 'team-two-logo'],
+  ].forEach(([select, codeId, nameId, logoId]) => {
     const team = select.value;
-    document.querySelector(`#${codeId}`).textContent = teamCodes[team]
-      || team.replace(/[^A-Za-z]/g, '').slice(0, 3).toUpperCase();
+    const code = teamCodes[team] || team.replace(/[^A-Za-z]/g, '').slice(0, 3).toUpperCase();
+    document.querySelector(`#${codeId}`).textContent = code;
     document.querySelector(`#${nameId}`).textContent = team;
-    select.closest('.team-select-card').style.setProperty('--team-color', teamColors[team] || '#4c7d91');
+    const logo = document.querySelector(`#${logoId}`);
+    logo.hidden = false;
+    logo.onerror = () => { logo.hidden = true; };
+    logo.src = `data/logo/${code}.svg`;
+    select.closest('.team-side').style.setProperty('--team-color', teamColors[team] || '#4c7d91');
   });
 }
 
