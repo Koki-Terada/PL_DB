@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#071d18">
+  <meta name="description" content="プレミアリーグのデータを確認するためのWebアプリです。">
+  <title>プレミアリーグデータ</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#main" aria-label="プレミアリーグデータ ホーム">
+      <span class="brand-mark" aria-hidden="true">PL</span>
+      <span>PREMIER LEAGUE <small>DATA CENTER</small></span>
+    </a>
+    <span class="season">シーズンデータ</span>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="page-title">
+      <p class="eyebrow"><span></span> FOOTBALL, IN FOCUS</p>
+      <h1 id="page-title">プレミアリーグ<br><span>データセンター</span></h1>
+      <p class="intro">試合の熱狂を、データでもっと楽しもう。</p>
+      <div class="hero-meta"><span class="live-dot"></span> あなたの観戦を、もっと深く。</div>
+    </section>
+
+    <section class="check-card" aria-labelledby="check-title">
+      <div class="card-icon" aria-hidden="true">01</div>
+      <div class="card-copy">
+        <p class="card-label">GETTING STARTED</p>
+        <h2 id="check-title">準備はできましたか？</h2>
+        <p>ボタンを押して、アプリの動作を確認しましょう。</p>
+      </div>
+      <button id="check-button" type="button">動作確認 <span aria-hidden="true">→</span></button>
+      <p id="result" class="result" role="status" aria-live="polite"></p>
+    </section>
+
+    <p class="coming-soon"><span aria-hidden="true">✦</span> 順位表や試合結果などのデータを、これから追加していきます。</p>
+  </main>
+
+  <footer><span>PREMIER LEAGUE DATA CENTER</span><span>YOUR GAME. YOUR DATA.</span></footer>
+</body>
+</html>
