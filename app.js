@@ -1,5 +1,3 @@
-const checkButton = document.querySelector('#check-button');
-const result = document.querySelector('#result');
 const teamOneSelect = document.querySelector('#team-one');
 const teamTwoSelect = document.querySelector('#team-two');
 const dataStatus = document.querySelector('#data-status');
@@ -148,21 +146,21 @@ function populateTeamSelects(matches) {
   const initialOne = teams.includes('Arsenal') ? 'Arsenal' : teams[0];
   const initialTwo = teams.includes('Manchester City') ? 'Manchester City' : teams[1];
 
-  function fillSelect(select, selected, excluded) {
+  function fillSelect(select, selected) {
     select.replaceChildren();
-    teams.filter((team) => team !== excluded).forEach((team) => {
+    teams.forEach((team) => {
       const option = document.createElement('option');
       option.value = team;
       option.textContent = team;
       option.selected = team === selected;
       select.append(option);
     });
-    if (!teams.includes(selected) || selected === excluded) select.selectedIndex = 0;
+    if (!teams.includes(selected)) select.selectedIndex = 0;
     select.disabled = false;
   }
 
-  fillSelect(teamOneSelect, initialOne, initialTwo);
-  fillSelect(teamTwoSelect, initialTwo, teamOneSelect.value);
+  fillSelect(teamOneSelect, initialOne);
+  fillSelect(teamTwoSelect, initialTwo);
 }
 
 async function loadScoreData() {
@@ -210,10 +208,5 @@ async function loadScoreData() {
     console.error('Score_DB.csv の読み込みに失敗しました:', error);
   }
 }
-
-checkButton.addEventListener('click', () => {
-  result.textContent = '動作確認に成功しました';
-  result.classList.add('is-visible');
-});
 
 loadScoreData();
